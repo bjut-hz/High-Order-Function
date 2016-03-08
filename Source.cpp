@@ -44,7 +44,7 @@ T sumGeneric( T a, T b, const function< int( int ) >& func,  const function< voi
 
 //advanced abstraction. Method 2
 template < class T, class F, class G >
-T sumGeneric( T a, T b, F func, G next ){
+T sumGeneric2( T a, T b, F func, G next ){
 	T result( 0 );
 	for ( T i = a; i <= b; next( i ) ) {
 		result += func( i ); 
@@ -109,9 +109,9 @@ int main(){
 	cout << "sumInt( 1, 50 ):" << sumInt( 1, 50 ) << " sumCube( 1, 50 ):" << sumCube( 1, 50 ) << " sumPi( 1, 50 ):" << sumPi( 1, 50 );
 
 	cout << endl << "High Order Function:" << endl;
-	cout << "sumInt( 1, 50 ):" << sumGeneric( 1, 50, Self<int>(), Inc<int>() )
-		<< " sumCube( 1, 50 ):" << sumGeneric( 1, 50, Cube<int>(), Inc<int>() )
-		<< " sumPi( 1, 50 ):" << sumGeneric( (double)1, (double)50, MyFunc<double>(), Inc4<double>() );
+	cout << "sumInt( 1, 50 ):" << sumGeneric2( 1, 50, Self<int>( ), Inc<int>( ) )
+		<< " sumCube( 1, 50 ):" << sumGeneric2( 1, 50, Cube<int>( ), Inc<int>( ) )
+		<< " sumPi( 1, 50 ):" << sumGeneric2( (double)1, (double)50, MyFunc<double>( ), Inc4<double>( ) );
 
 	system( "pause" );
 }
